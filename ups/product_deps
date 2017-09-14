@@ -1,25 +1,22 @@
 # The parent line must be the first non-comment line in the file
 # This line defines the product name and version
-parent canvas	v3_00_02
+parent canvas_root_io	v0_01_00
 defaultqual	e14
 #
 fcldir -
 perllib  product_dir
 #
 product		version
-clhep		v2_3_4_4
-cppunit		v1_13_2
-python		v2_7_13d
+canvas		v3_00_02
 root		v6_10_04d
-messagefacility	v2_01_01
 cetbuildtools	v5_13_01	-	only_for_build
 end_product_list
 
-qualifier	messagefacility	root		clhep		cppunit		python	compiler	notes
-e14:debug	e14:debug	e14:debug	e14:debug	e14:debug	-nq-	gcc
-e14:prof	e14:prof	e14:prof	e14:prof	e14:prof	-nq-	gcc
-nu:e14:debug	e14:debug	e14:nu:debug	e14:debug	e14:debug	-nq-	gcc
-nu:e14:prof	e14:prof	e14:nu:prof	e14:prof	e14:prof	-nq-	gcc
+qualifier	canvas          root		compiler	notes
+e14:debug	e14:debug	e14:debug	gcc
+e14:prof	e14:prof	e14:prof	gcc
+nu:e14:debug	e14:debug	e14:nu:debug	gcc
+nu:e14:prof	e14:prof	e14:nu:prof	gcc
 end_qualifier_list
 
 # Local Variables:

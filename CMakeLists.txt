@@ -39,7 +39,7 @@ endif()
 
 cet_report_compiler_flags()
 
-find_ups_product(cppunit)
+find_ups_product(canvas)
 find_ups_product(clhep)
 find_ups_product(cetlib_except)
 find_ups_product(cetlib v2_01_00)
@@ -61,8 +61,7 @@ cet_find_library( CPPUNIT NAMES cppunit   PATHS ENV CPPUNIT_LIB   NO_DEFAULT_PAT
 include(ArtDictionary)
 
 # source
-add_subdirectory (canvas)
-add_subdirectory (tools)
+add_subdirectory(canvas_root_io)
 
 # ups - table and config files
 add_subdirectory(ups)
