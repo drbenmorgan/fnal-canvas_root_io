@@ -1,5 +1,5 @@
 // vim: set sw=2 expandtab :
-#include "canvas/Persistency/Common/EDProductGetterFinder.h"
+#include "canvas/Persistency/Common/PrincipalBase.h"
 #include "canvas/Persistency/Common/RefCore.h"
 #include "canvas/Persistency/Provenance/ProductID.h"
 #include "canvas_root_io/Streamers/RefCoreStreamer.h"
@@ -10,14 +10,14 @@
 namespace art {
 
 RefCoreStreamer::
-RefCoreStreamer(cet::exempt_ptr<EDProductGetterFinder const> principal /* = cet::exempt_ptr<EDProductGetterFinder const>() */)
+RefCoreStreamer(cet::exempt_ptr<PrincipalBase const> principal /* = cet::exempt_ptr<PrincipalBase const>() */)
   : principal_(principal)
 {
 }
 
 void
 RefCoreStreamer::
-setPrincipal(cet::exempt_ptr<EDProductGetterFinder const> principal)
+setPrincipal(cet::exempt_ptr<PrincipalBase const> principal)
 {
   principal_ = principal;
 }
@@ -55,7 +55,7 @@ operator()(TBuffer& buf, void* objp)
 }
 
 void
-configureRefCoreStreamer(cet::exempt_ptr<EDProductGetterFinder const> principal)
+configureRefCoreStreamer(cet::exempt_ptr<PrincipalBase const> principal)
 {
   static TClassRef cl("art::RefCore");
   RefCoreStreamer* st = static_cast<RefCoreStreamer*>(cl->GetStreamer());
