@@ -45,10 +45,11 @@ namespace art {
     {
       // The streamer affects only the members of the Assns<A,B,void>
       // base class.
-      className = name_of_assns_base(className);
-      static TClassRef cl{TClass::GetClass(className.c_str())};
+      auto maybe_base_name = name_of_assns_base(className);
+      auto base_name = maybe_base_name.empty() ? className : maybe_base_name;
+      TClassRef cl{TClass::GetClass(base_name.c_str())};
       if (cl->GetStreamer() == nullptr) {
-        cl->AdoptStreamer(new detail::AssnsStreamer{className});
+        cl->AdoptStreamer(new detail::AssnsStreamer{base_name});
       }
     }
 
