@@ -28,6 +28,11 @@ function cmake_file() {
 
 # ======================================================================
 # Check number of supplied arguments
+if [[ "$#" -ne 1 ]] ; then
+    echo "Incorrect number of arguments specified."
+    usage
+    exit 1
+fi
 
 TOP=${1}
 
