@@ -69,5 +69,8 @@ add_subdirectory(ups)
 # CMake modules
 add_subdirectory(Modules)
 
+# tools - e.g. migration scripts
+add_subdirectory(tools)
+
 # packaging utility
 include(UseCPack)
