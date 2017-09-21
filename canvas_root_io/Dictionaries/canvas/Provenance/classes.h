@@ -15,4 +15,3 @@
 #include "canvas/Persistency/Provenance/ResultsAuxiliary.h"
 #include "canvas/Persistency/Provenance/RunAuxiliary.h"
 #include "canvas/Persistency/Provenance/SubRunAuxiliary.h"
-#include "canvas/Utilities/WrappedClassName.h"
