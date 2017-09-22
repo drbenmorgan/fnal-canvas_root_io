@@ -16,7 +16,7 @@
           targetClass="art::ProductProvenance"
           source="art::BranchID branchID_"
           target="productID_"
-          include="canvas/Persistency/Provenance/BranchID.h">
+          include="canvas/Persistency/Provenance/Compatibility/BranchID.h">
     <![CDATA[ productID_ = art::ProductID{onfile.branchID_.id()}; ]]>
   </ioread>
   <class name="art::ProductProvenance::Transients"/>
@@ -55,7 +55,7 @@
           targetClass="art::BranchChildren"
           source="std::map<art::BranchID, std::set<art::BranchID>> childLookup_;"
           target="childLookup_"
-          include="canvas/Persistency/Provenance/BranchID.h">
+          include="canvas/Persistency/Provenance/Compatibility/BranchID.h">
     <![CDATA[
         childLookup_.clear();
         for (auto const& lookup : onfile.childLookup_) {
@@ -146,7 +146,7 @@
           targetClass="art::Parentage"
           source="std::vector<art::BranchID> parents_;"
           target="parents_"
-          include="canvas/Persistency/Provenance/BranchID.h">
+          include="canvas/Persistency/Provenance/Compatibility/BranchID.h">
     <![CDATA[
         parents_.resize(onfile.parents_.size());
         for (std::size_t i = 0; i < parents_.size(); ++i) {

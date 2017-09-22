@@ -1,5 +1,5 @@
 #include "canvas/Persistency/Provenance/BranchChildren.h"
-#include "canvas/Persistency/Provenance/BranchID.h"
+#include "canvas/Persistency/Provenance/Compatibility/BranchID.h"
 #include "canvas/Persistency/Provenance/EventAuxiliary.h"
 #include "canvas/Persistency/Provenance/FileFormatVersion.h"
 #include "canvas/Persistency/Provenance/FileIndex.h"
