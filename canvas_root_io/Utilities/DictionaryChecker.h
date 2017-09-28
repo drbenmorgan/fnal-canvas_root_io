@@ -1,5 +1,8 @@
 #ifndef canvas_root_io_Utilities_DictionaryChecker_h
 #define canvas_root_io_Utilities_DictionaryChecker_h
+
+#include "canvas/Utilities/TypeID.h"
+
 #include <set>
 #include <string>
 #include <vector>
@@ -19,6 +22,10 @@ public:
                          bool recursive = false,
                          std::size_t level = 0);
 
+  template <typename T>
+  void checkDictionaries(bool recursive = false,
+                         std::size_t level = 0);
+
   /// Return the sequence of (demangled) types missing dictionaries.
   std::vector<std::string> typesMissingDictionaries();
 
@@ -35,6 +42,14 @@ private:
   std::set<std::string> checked_names_;
   std::set<std::string> missing_types_;
 };
+
+template <typename T>
+void
+art::root::DictionaryChecker::checkDictionaries(bool const recursive,
+                                                std::size_t const level)
+{
+  checkDictionaries(TypeID{typeid(T)}.className(), recursive, level);
+}
 
 inline
 void
