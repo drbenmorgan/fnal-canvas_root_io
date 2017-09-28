@@ -19,6 +19,7 @@
 #include <sstream>
 
 namespace {
+
   bool match_from_begin(std::string const& test, std::string const& ref)
   {
     return test.size() < ref.size() ? false : test.compare(0, ref.size(), ref) == 0;
@@ -44,7 +45,6 @@ namespace {
       test.erase(test.size()-ref.size());
     }
   }
-
 
 }
 
