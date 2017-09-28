@@ -2,6 +2,7 @@
   <class pattern="art::Transient<*>">
     <field name="value_" transient="true"/>
   </class>
+  <enum name="art::BranchType"/>
   <class name="art::History" ClassVersion="10">
     <version ClassVersion="10" checksum="1835436919"/>
   </class>
@@ -138,6 +139,7 @@
   <class name="std::set<art::ProcessConfigurationID>"/>
   <class name="std::pair<art::BranchKey, art::BranchDescription>"/>
   <class name="art::ProductList"/>
+  <class name="std::vector<art::ProductID>"/>
   <class name="art::Parentage" ClassVersion="11">
     <version ClassVersion="11" checksum="1829758938"/>
     <version ClassVersion="10" checksum="3473129795"/>
