@@ -9,20 +9,17 @@
 namespace art {
   namespace root { // Internal use only.
     std::vector<TypeID> getWrapperTIDs(BranchDescription const& bd);
-    std::vector<TypeID> getWrapperTIDs(std::string const & productClassName);
+    std::vector<TypeID> getWrapperTIDs(std::string const& productClassName);
   }
 }
 
-inline
-auto
-art::root::getWrapperTIDs(BranchDescription const & bd)
--> std::vector<TypeID>
+inline auto
+art::root::getWrapperTIDs(BranchDescription const& bd) -> std::vector<TypeID>
 {
   return getWrapperTIDs(bd.producedClassName());
 }
 
 #endif /* canvas_root_io_Utilities_getWrapperTIDs_h */
-
 
 // Local Variables:
 // mode: c++

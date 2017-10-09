@@ -10,30 +10,32 @@
 #include "canvas/Utilities/TypeID.h"
 
 #include "TBuffer.h"
-#include "TClassStreamer.h"
 #include "TClass.h"
 #include "TClassRef.h"
+#include "TClassStreamer.h"
 
 namespace art {
   namespace detail {
 
     class AssnsStreamer : public TClassStreamer {
       std::string className_;
+
     public:
-      explicit AssnsStreamer(std::string const& className) :
-        className_{className}
+      explicit AssnsStreamer(std::string const& className)
+        : className_{className}
       {}
 
       static void init_streamer(std::string className);
 
-      void operator()(TBuffer& R_b, void* objp) {
+      void
+      operator()(TBuffer& R_b, void* objp)
+      {
         static TClassRef cl{TClass::GetClass(className_.c_str())};
         auto obj = reinterpret_cast<detail::AssnsBase*>(objp);
         if (R_b.IsReading()) {
           cl->ReadBuffer(R_b, objp);
           obj->fill_transients();
-        }
-        else {
+        } else {
           obj->fill_from_transients();
           cl->WriteBuffer(R_b, objp);
         }
@@ -52,7 +54,6 @@ namespace art {
         cl->AdoptStreamer(new detail::AssnsStreamer{base_name});
       }
     }
-
   }
 }
 #endif /* canvas_root_io_Streamers_AssnsStreamer_h */

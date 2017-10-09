@@ -8,9 +8,9 @@
 #include <typeinfo>
 #include <vector>
 
+#include "canvas/Persistency/Common/Wrapper.h"
 #include "canvas_root_io/Utilities/TypeTools.h"
 #include "canvas_root_io/Utilities/TypeWithDict.h"
-#include "canvas/Persistency/Common/Wrapper.h"
 
 using namespace std::string_literals;
 using art::root::TypeWithDict;
@@ -27,7 +27,8 @@ BOOST_AUTO_TEST_CASE(find_nested)
   TClass* intvec{TClass::GetClass("std::vector<int>")};
   BOOST_REQUIRE(intvec);
 
-  BOOST_REQUIRE(!art::root::find_nested_type_named("WankelRotaryEngine", intvec));
+  BOOST_REQUIRE(
+    !art::root::find_nested_type_named("WankelRotaryEngine", intvec));
   BOOST_REQUIRE(art::root::find_nested_type_named("const_iterator", intvec));
 }
 
@@ -35,7 +36,8 @@ BOOST_AUTO_TEST_CASE(burrowing)
 {
   TClass* wrapper_type{TClass::GetClass(typeid(std::vector<int>))};
   BOOST_REQUIRE(wrapper_type);
-  TypeWithDict const v_type{art::root::find_nested_type_named("value_type", wrapper_type)};
+  TypeWithDict const v_type{
+    art::root::find_nested_type_named("value_type", wrapper_type)};
   BOOST_REQUIRE(v_type);
   BOOST_REQUIRE_EQUAL(v_type.className(), "int"s);
 }

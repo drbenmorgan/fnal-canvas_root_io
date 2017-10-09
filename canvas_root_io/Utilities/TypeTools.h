@@ -6,9 +6,9 @@
 // TypeTools provides a small number of Reflex-based tools
 // ==============================================================
 
-#include "canvas_root_io/Utilities/TypeWithDict.h"
-#include "canvas/Utilities/WrappedClassName.h"
 #include "TClass.h"
+#include "canvas/Utilities/WrappedClassName.h"
+#include "canvas_root_io/Utilities/TypeWithDict.h"
 #include <ostream>
 #include <string>
 #include <vector>
@@ -25,7 +25,8 @@ namespace art {
 
     std::vector<TClass*> public_base_classes(TClass* cl);
 
-    TypeWithDict type_of_template_arg(TClass* template_instance, size_t desired_arg);
+    TypeWithDict type_of_template_arg(TClass* template_instance,
+                                      size_t desired_arg);
     TypeWithDict type_of_template_arg(std::string const& template_instance,
                                       size_t desired_arg);
 
@@ -34,30 +35,28 @@ namespace art {
 
     bool is_instantiation_of(TClass* cl, std::string const& template_name);
 
-    [[noreturn]]
-    void throwLateDictionaryError(std::string const& className);
+    [[noreturn]] void throwLateDictionaryError(std::string const& className);
 
   } // namespace root
 } // namespace art
 
-inline
-auto
+inline auto
 art::root::type_of_template_arg(std::string const& template_instance,
                                 size_t const desired_arg) -> TypeWithDict
 {
   return TypeWithDict{name_of_template_arg(template_instance, desired_arg)};
 }
 
-inline
-auto
-art::root::type_of_assns_partner(std::string const& assns_type_name) -> TypeWithDict
+inline auto
+art::root::type_of_assns_partner(std::string const& assns_type_name)
+  -> TypeWithDict
 {
   return TypeWithDict{name_of_assns_partner(assns_type_name)};
 }
 
-inline
-auto
-art::root::type_of_assns_base(std::string const& assns_type_name) -> TypeWithDict
+inline auto
+art::root::type_of_assns_base(std::string const& assns_type_name)
+  -> TypeWithDict
 {
   return TypeWithDict{name_of_assns_base(assns_type_name)};
 }
