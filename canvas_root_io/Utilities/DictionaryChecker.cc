@@ -86,6 +86,13 @@ art::root::DictionaryChecker::checkDictionaries(std::string const& name_orig,
     return;
   }
 
+  // Special cases
+  // -- enumerations are awkward in ROOT; they do not require
+  //    definitions
+  if (match_from_begin(name, "art::BranchType")) {
+    return;
+  }
+
   if (match_from_begin(name, "unique_ptr<")) {
     checkDictionariesForArg_(name, 0, level);
     return;
@@ -111,7 +118,7 @@ art::root::DictionaryChecker::checkDictionaries(std::string const& name_orig,
     switch (ty.category()) {
       case TypeWithDict::Category::NONE: {
         throw Exception(errors::LogicError, "checkDictionaries: ")
-          << "Type category of name is NONE: " << name << 'n';
+          << "Type category of name is NONE: " << name << '\n';
       }
       case TypeWithDict::Category::CLASSTYPE:
         break; // Continue below.

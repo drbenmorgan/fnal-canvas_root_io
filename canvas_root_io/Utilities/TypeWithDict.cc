@@ -395,7 +395,7 @@ art::root::TypeWithDict::categoryFromDict_(TDictionary* tDict)
     return result;
   }
   throw Exception(errors::LogicError)
-    << "INTENRAL ERROR: TypeWithDict::categoryFromDict_ encountered a type "
+    << "INTERNAL ERROR: TypeWithDict::categoryFromDict_ encountered a type "
     << tDict->GetName() << " of unknown category " << tDict->IsA()->GetName()
     << ".\n";
 }
