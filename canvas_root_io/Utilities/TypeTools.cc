@@ -1,10 +1,10 @@
 // vim: set sw=2:
 
-#include "canvas/Utilities/DebugMacros.h"
-#include "canvas/Utilities/Exception.h"
 #include "canvas_root_io/Utilities/TypeTools.h"
 #include "boost/algorithm/string.hpp"
 #include "boost/thread/tss.hpp"
+#include "canvas/Utilities/DebugMacros.h"
+#include "canvas/Utilities/Exception.h"
 #include "cetlib/container_algorithms.h"
 #include "cetlib_except/demangle.h"
 #include "messagefacility/MessageLogger/MessageLogger.h"
@@ -25,15 +25,15 @@ using namespace std;
 using art::root::TypeWithDict;
 
 TypeWithDict
-art::root::find_nested_type_named(string const& nested_type, TClass* const type_to_search)
+art::root::find_nested_type_named(string const& nested_type,
+                                  TClass* const type_to_search)
 {
   if (type_to_search == nullptr) {
     throw Exception(errors::NullPointerError, "find_nested_type_named: ")
       << "Null TClass pointer passed for type_to_search!\n";
   }
-  TypeWithDict
-    found_type(string(type_to_search->GetName()) + "::" +
-               nested_type);
+  TypeWithDict found_type(string(type_to_search->GetName()) +
+                          "::" + nested_type);
   return found_type;
 }
 
@@ -75,8 +75,7 @@ art::root::mapped_type_of(TClass* const t)
       << "Null TClass pointer passed for type!\n";
   }
   ROOT::ESTLType stlty = t->GetCollectionType();
-  if ((stlty == ROOT::kSTLmap) ||
-      (stlty == ROOT::kSTLmultimap) ||
+  if ((stlty == ROOT::kSTLmap) || (stlty == ROOT::kSTLmultimap) ||
       (stlty == ROOT::kSTLunorderedmap) ||
       (stlty == ROOT::kSTLunorderedmultimap)) {
     TVirtualCollectionProxy* vcp = t->GetCollectionProxy();
@@ -118,13 +117,15 @@ art::root::public_base_classes(TClass* const cl)
 }
 
 TypeWithDict
-art::root::type_of_template_arg(TClass* template_instance, size_t const desired_arg)
+art::root::type_of_template_arg(TClass* template_instance,
+                                size_t const desired_arg)
 {
   if (template_instance == nullptr) {
     throw Exception(errors::NullPointerError, "type_of_template_arg: ")
       << "Null TClass pointer passed!\n";
   }
-  return TypeWithDict{type_of_template_arg(template_instance->GetName(), desired_arg)};
+  return TypeWithDict{
+    type_of_template_arg(template_instance->GetName(), desired_arg)};
 }
 
 bool
@@ -140,9 +141,7 @@ art::root::is_instantiation_of(TClass* const cl, string const& template_name)
 void
 art::root::throwLateDictionaryError(std::string const& className)
 {
-  throw Exception(errors::LogicError,
-                  "NoDictionary: ")
-    << "Could not find dictionary for: "
-    << className
+  throw Exception(errors::LogicError, "NoDictionary: ")
+    << "Could not find dictionary for: " << className
     << "\ndespite passing runtime dictionary checks.\n";
 }

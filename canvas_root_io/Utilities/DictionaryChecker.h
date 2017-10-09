@@ -16,15 +16,13 @@ namespace art {
 /// Manage recursive checking of dictionary information for data products.
 class art::root::DictionaryChecker {
 public:
-
   /// Check dictionaries (optionally recursively) for named type.
   void checkDictionaries(std::string const& name_orig,
                          bool recursive = false,
                          std::size_t level = 0);
 
   template <typename T>
-  void checkDictionaries(bool recursive = false,
-                         std::size_t level = 0);
+  void checkDictionaries(bool recursive = false, std::size_t level = 0);
 
   /// Return the sequence of (demangled) types missing dictionaries.
   std::vector<std::string> typesMissingDictionaries();
@@ -51,8 +49,7 @@ art::root::DictionaryChecker::checkDictionaries(bool const recursive,
   checkDictionaries(TypeID{typeid(T)}.className(), recursive, level);
 }
 
-inline
-void
+inline void
 art::root::DictionaryChecker::resetMissingTypes_()
 {
   using std::swap;
@@ -60,7 +57,6 @@ art::root::DictionaryChecker::resetMissingTypes_()
   swap(tmp, missing_types_);
 }
 #endif /* canvas_root_io_Utilities_DictionaryChecker_h */
-
 
 // Local Variables:
 // mode: c++

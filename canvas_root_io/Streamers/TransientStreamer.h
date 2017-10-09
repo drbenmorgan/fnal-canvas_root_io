@@ -17,93 +17,78 @@
 
 namespace art {
 
-void setProvenanceTransientStreamers();
+  void setProvenanceTransientStreamers();
 
-template <typename T>
-class TransientStreamer : public TClassStreamer {
+  template <typename T>
+  class TransientStreamer : public TClassStreamer {
 
-public: // TYPES
+  public: // TYPES
+    typedef T element_type;
 
-  typedef T element_type;
+  public: // MEMBER FUNCTIONS
+    TransientStreamer();
 
-public: // MEMBER FUNCTIONS
+  public: // MEMBER FUNCTIONS
+    virtual TClassStreamer* Generate() const override;
 
-  TransientStreamer();
+    void operator()(TBuffer& R_b, void* objp);
 
-public: // MEMBER FUNCTIONS
+  private: // MEMBER DATA
+    std::string className_;
 
-  virtual
+    TClassRef cl_;
+  };
+
+  template <typename T>
+  TransientStreamer<T>::TransientStreamer()
+    : className_(TypeID(typeid(T)).className()), cl_(className_.c_str())
+  {}
+
+  template <typename T>
   TClassStreamer*
-  Generate() const override;
-
-  void operator()(TBuffer& R_b, void* objp);
-
-private: // MEMBER DATA
-
-  std::string
-  className_;
-
-  TClassRef
-  cl_;
-
-};
-
-template<typename T>
-TransientStreamer<T>::
-TransientStreamer()
-  : className_(TypeID(typeid(T)).className())
-  , cl_(className_.c_str())
-{
-}
-
-template<typename T>
-TClassStreamer*
-TransientStreamer<T>::
-Generate() const
-{
-  return new TransientStreamer<T>{*this};
-}
-
-template<typename T>
-void
-TransientStreamer<T>::
-operator()(TBuffer& R_b, void* objp)
-{
-  if (R_b.IsReading()) {
-    cl_->ReadBuffer(R_b, objp);
-    T* obj = static_cast<T*>(objp);
-    *obj = T();
+  TransientStreamer<T>::Generate() const
+  {
+    return new TransientStreamer<T>{*this};
   }
-  else {
-    cl_->WriteBuffer(R_b, objp);
+
+  template <typename T>
+  void
+  TransientStreamer<T>::operator()(TBuffer& R_b, void* objp)
+  {
+    if (R_b.IsReading()) {
+      cl_->ReadBuffer(R_b, objp);
+      T* obj = static_cast<T*>(objp);
+      *obj = T();
+    } else {
+      cl_->WriteBuffer(R_b, objp);
+    }
   }
-}
 
-namespace detail {
+  namespace detail {
 
-template<typename T>
-void
-SetTransientStreamer()
-{
-  TClass* cl = TClass::GetClass(typeid(T));
-  // FIXME: We need to test for cl == nullptr here!
-  if (cl->GetStreamer() == nullptr) {
-    cl->AdoptStreamer(new TransientStreamer<T>());
-  }
-}
+    template <typename T>
+    void
+    SetTransientStreamer()
+    {
+      TClass* cl = TClass::GetClass(typeid(T));
+      // FIXME: We need to test for cl == nullptr here!
+      if (cl->GetStreamer() == nullptr) {
+        cl->AdoptStreamer(new TransientStreamer<T>());
+      }
+    }
 
-template<typename T>
-void
-SetTransientStreamer(T const&)
-{
-  TClass* cl = TClass::GetClass(typeid(T));
-  // FIXME: We need to test for cl == nullptr here!
-  if (cl->GetStreamer() == nullptr) {
-    cl->AdoptStreamer(new TransientStreamer<T>());
-  }
-}
+    template <typename T>
+    void
+    SetTransientStreamer(T const&)
+    {
+      TClass* cl = TClass::GetClass(typeid(T));
+      // FIXME: We need to test for cl == nullptr here!
+      if (cl->GetStreamer() == nullptr) {
+        cl->AdoptStreamer(new TransientStreamer<T>());
+      }
+    }
 
-} // namespace detail
+  } // namespace detail
 
 } // namespace art
 

@@ -16,10 +16,7 @@ class TBuffer;
 class art::detail::PtrVectorBaseStreamer : public TClassStreamer {
 
 public:
-
-  void
-  operator()(TBuffer &R_b, void *objp) override;
-
+  void operator()(TBuffer& R_b, void* objp) override;
 };
 
 #endif /* canvas_root_io_Streamers_setPtrVectorBaseStreamer_h */

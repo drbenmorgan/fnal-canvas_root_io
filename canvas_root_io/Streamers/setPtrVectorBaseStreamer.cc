@@ -1,16 +1,15 @@
+#include "canvas_root_io/Streamers/setPtrVectorBaseStreamer.h"
 #include "canvas/Persistency/Common/PtrVectorBase.h"
 #include "canvas/Utilities/TypeID.h"
-#include "canvas_root_io/Streamers/setPtrVectorBaseStreamer.h"
 
 #include "TBuffer.h"
 #include "TClass.h"
 
 void
-art::detail::PtrVectorBaseStreamer::
-operator()(TBuffer &R_b, void *objp)
+art::detail::PtrVectorBaseStreamer::operator()(TBuffer& R_b, void* objp)
 {
   static TClassRef cl("art::PtrVectorBase");
-  PtrVectorBase* obj = reinterpret_cast<PtrVectorBase *>(objp);
+  PtrVectorBase* obj = reinterpret_cast<PtrVectorBase*>(objp);
   if (R_b.IsReading()) {
     obj->zeroTransients(); // Clear transient rep.
     cl->ReadBuffer(R_b, objp);
@@ -24,10 +23,9 @@ operator()(TBuffer &R_b, void *objp)
 }
 
 void
-art::detail::
-setPtrVectorBaseStreamer()
+art::detail::setPtrVectorBaseStreamer()
 {
-  TClass *cl = TClass::GetClass(typeid(PtrVectorBase));
+  TClass* cl = TClass::GetClass(typeid(PtrVectorBase));
   if (cl->GetStreamer() == 0) {
     cl->AdoptStreamer(new PtrVectorBaseStreamer);
   }

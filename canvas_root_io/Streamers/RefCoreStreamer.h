@@ -10,34 +10,28 @@ class TBuffer;
 
 namespace art {
 
-class EDProductGetterFinder;
+  class EDProductGetterFinder;
 
-class RefCoreStreamer : public TClassStreamer {
+  class RefCoreStreamer : public TClassStreamer {
 
-public:
+  public:
+    explicit RefCoreStreamer(
+      cet::exempt_ptr<EDProductGetterFinder const> principal =
+        cet::exempt_ptr<EDProductGetterFinder const>());
 
-  explicit
-  RefCoreStreamer(cet::exempt_ptr<EDProductGetterFinder const> principal = cet::exempt_ptr<EDProductGetterFinder const>());
+    void setPrincipal(cet::exempt_ptr<EDProductGetterFinder const>);
 
-  void
-  setPrincipal(cet::exempt_ptr<EDProductGetterFinder const>);
+    virtual TClassStreamer* Generate() const override;
 
-  virtual
-  TClassStreamer*
-  Generate() const override;
+    void operator()(TBuffer&, void*) override;
 
-  void
-  operator()(TBuffer&, void*) override;
+  private:
+    cet::exempt_ptr<EDProductGetterFinder const> principal_;
+  };
 
-private:
-
-  cet::exempt_ptr<EDProductGetterFinder const>
-  principal_;
-
-};
-
-void
-configureRefCoreStreamer(cet::exempt_ptr<EDProductGetterFinder const> principal = cet::exempt_ptr<EDProductGetterFinder const>());
+  void configureRefCoreStreamer(
+    cet::exempt_ptr<EDProductGetterFinder const> principal =
+      cet::exempt_ptr<EDProductGetterFinder const>());
 
 } // namespace art
 
