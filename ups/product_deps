@@ -8,8 +8,8 @@ perllib  product_dir
 #
 product		version
 canvas		v3_00_02
-root		v6_10_04d
-cetbuildtools	v5_13_01	-	only_for_build
+root		v6_10_06
+cetbuildtools	v5_14_03	-	only_for_build
 end_product_list
 
 qualifier	canvas          root		compiler	notes
