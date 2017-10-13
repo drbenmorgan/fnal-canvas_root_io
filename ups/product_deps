@@ -17,6 +17,10 @@ e14:debug	e14:debug	e14:debug	gcc
 e14:prof	e14:prof	e14:prof	gcc
 nu:e14:debug	e14:debug	e14:nu:debug	gcc
 nu:e14:prof	e14:prof	e14:nu:prof	gcc
+e15:debug	e15:debug	e15:debug	gcc
+e15:prof	e15:prof	e15:prof	gcc
+nu:e15:debug	e15:debug	e15:nu:debug	gcc
+nu:e15:prof	e15:prof	e15:nu:prof	gcc
 end_qualifier_list
 
 # Local Variables:
