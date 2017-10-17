@@ -8,7 +8,7 @@ perllib  product_dir
 #
 product		version
 canvas		v3_00_02
-root		v6_10_06a
+root		v6_10_08
 cetbuildtools	v5_14_03	-	only_for_build
 end_product_list
 
