@@ -7,6 +7,8 @@
 
 #include "TClassStreamer.h"
 
+#include <vector>
+
 class TBuffer;
 
 namespace art {
@@ -15,35 +17,22 @@ namespace art {
     cet::exempt_ptr<BranchIDLists const> branchIDLists = {});
 
   class ProductIDStreamer : public TClassStreamer {
+  public:
+    explicit ProductIDStreamer(
+      cet::exempt_ptr<BranchIDLists const> branchIDLists = {});
 
-  public: // MEMBER FUNCTIONS -- Special Member Functions
-    virtual ~ProductIDStreamer();
+    void setBranchIDLists(cet::exempt_ptr<BranchIDLists const> bidLists);
 
-    explicit ProductIDStreamer(BranchIDLists const* branchIDLists = nullptr);
+    void operator()(TBuffer& R_b, void* objp) override;
 
-    ProductIDStreamer(ProductIDStreamer const&);
+  private:
+    cet::exempt_ptr<BranchIDLists const> branchIDLists_;
 
-    ProductIDStreamer(ProductIDStreamer&&) = delete;
-
-    ProductIDStreamer& operator=(ProductIDStreamer const&) = delete;
-
-    ProductIDStreamer& operator=(ProductIDStreamer&&) = delete;
-
-  public: // MEMBER FUNCTIONS -- For the use of configureProductIDStreamer
-    void setBranchIDLists(BranchIDLists const*);
-
-  public: // MEMBER FUNCTIONS -- Required by TClassStreamer API
-    virtual TClassStreamer* Generate() const override;
-
-    virtual void operator()(TBuffer&, void*) override;
-
-  private: // MEMBER DATA
-    // Note: We do not own this.
-    BranchIDLists const* branchIDLists_{nullptr};
+    // Translation from compatibility::ProcessIndex to BranchIDLists
+    // index.
+    std::vector<std::size_t> branchIDListsIndices_;
   };
-
-} // namespace art
-
+}
 #endif /* canvas_root_io_Streamers_ProductIDStreamer_h */
 
 // Local Variables:
