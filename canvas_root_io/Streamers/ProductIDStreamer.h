@@ -23,9 +23,12 @@ namespace art {
 
     void setBranchIDLists(cet::exempt_ptr<BranchIDLists const> bidLists);
 
+    TClassStreamer* Generate() const override;
+
     void operator()(TBuffer& R_b, void* objp) override;
 
   private:
+
     cet::exempt_ptr<BranchIDLists const> branchIDLists_;
 
     // Translation from compatibility::ProcessIndex to BranchIDLists

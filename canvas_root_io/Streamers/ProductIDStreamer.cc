@@ -45,6 +45,12 @@ namespace art {
     std::swap(*this, tmp);
   }
 
+  TClassStreamer*
+  ProductIDStreamer::Generate() const
+  {
+    return new ProductIDStreamer{*this};
+  }
+
   void
   ProductIDStreamer::operator()(TBuffer& R_b, void* objp)
   {
