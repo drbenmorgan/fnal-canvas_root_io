@@ -93,10 +93,16 @@ art::root::DictionaryChecker::checkDictionaries(std::string const& name_orig,
     return;
   }
 
+  // Cases that ROOT transparently supports
   if (match_from_begin(name, "unique_ptr<")) {
     checkDictionariesForArg_(name, 0, level);
     return;
   }
+  if (match_from_begin(name, "array<")) {
+    checkDictionariesForArg_(name, 0, level);
+    return;
+  }
+
   {
     auto I = checked_names_.find(name);
     if (I != checked_names_.end()) {
