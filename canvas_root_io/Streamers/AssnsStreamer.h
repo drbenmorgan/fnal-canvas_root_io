@@ -30,7 +30,7 @@ namespace art {
       void
       operator()(TBuffer& R_b, void* objp)
       {
-        static TClassRef cl{TClass::GetClass(className_.c_str())};
+        TClassRef cl{TClass::GetClass(className_.c_str())};
         auto obj = reinterpret_cast<detail::AssnsBase*>(objp);
         if (R_b.IsReading()) {
           cl->ReadBuffer(R_b, objp);
