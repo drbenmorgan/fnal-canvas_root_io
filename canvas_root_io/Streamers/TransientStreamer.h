@@ -31,7 +31,7 @@ namespace art {
   public: // MEMBER FUNCTIONS
     virtual TClassStreamer* Generate() const override;
 
-    void operator()(TBuffer& R_b, void* objp);
+    void operator()(TBuffer& R_b, void* objp) override;
 
   private: // MEMBER DATA
     std::string className_;
