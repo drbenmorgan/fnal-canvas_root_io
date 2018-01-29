@@ -2,7 +2,7 @@
 #include "canvas_root_io/Streamers/CacheStreamers.h"
 #include "canvas/Persistency/Common/BoolCache.h"
 #include "canvas/Persistency/Common/ConstPtrCache.h"
-#include "cetlib/exception.h"
+#include "cetlib_except/exception.h"
 
 #include "TBuffer.h"
 
