@@ -1,6 +1,5 @@
 #include "canvas_root_io/Streamers/BranchDescriptionStreamer.h"
 #include "canvas/Persistency/Provenance/BranchDescription.h"
-#include "canvas/Utilities/WrappedClassName.h"
 #include "messagefacility/MessageLogger/MessageLogger.h"
 
 #include "Compression.h"
@@ -52,8 +51,6 @@ namespace art {
         }
       }
     }
-    bd.transients_.get().wrappedName_ =
-      wrappedClassName(bd.producedClassName());
     bd.transients_.get().splitLevel_ = BranchDescription::invalidSplitLevel;
     bd.transients_.get().basketSize_ = BranchDescription::invalidBasketSize;
     bd.transients_.get().compression_ = BranchDescription::invalidCompression;
