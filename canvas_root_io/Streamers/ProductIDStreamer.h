@@ -28,7 +28,6 @@ namespace art {
     void operator()(TBuffer& R_b, void* objp) override;
 
   private:
-
     cet::exempt_ptr<BranchIDLists const> branchIDLists_;
 
     // Translation from compatibility::ProcessIndex to BranchIDLists
