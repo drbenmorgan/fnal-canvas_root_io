@@ -1,3 +1,8 @@
+if(ALT_CMAKE)
+  include(altCMakeLists.cmake)
+  return()
+endif()
+
 art_dictionary(NO_DEFAULT_LIBRARIES DICTIONARY_LIBRARIES cetlib NO_INSTALL)
 
 cet_make_exec(TypeNameBranchName_t

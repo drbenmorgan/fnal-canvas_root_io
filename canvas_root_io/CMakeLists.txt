@@ -1,3 +1,9 @@
+# - When user supplies "-DALT_CMAKE" use the non-CET/UPS system
+if(ALT_CMAKE)
+  include(altCMakeLists.cmake)
+  return()
+endif()
+
 include(CetMake)
 
 # cmake will automatically order the library builds according to declared dependencies
