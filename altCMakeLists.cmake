@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.3.0)
 project(canvas_root_io VERSION 1.4.2)
 
 # - Cetbuildtools, version2
-find_package(cetbuildtools2 0.2.0 REQUIRED)
+find_package(cetbuildtools2 0.4.0 REQUIRED)
 list(INSERT CMAKE_MODULE_PATH 0 ${cetbuildtools2_MODULE_PATH})
 set(CET_COMPILER_CXX_STANDARD_MINIMUM 14)
 include(CetInstallDirs)
@@ -26,10 +26,7 @@ set(Boost_NO_BOOST_CMAKE ON)
 # - Ensure we can refind Boost and extra components we need
 find_package(Boost 1.60.0
   REQUIRED
-    date_time
     unit_test_framework
-    program_options
-    thread
   )
 
 # Only AppleClang for now - also need check for clang+libstdc++
@@ -50,13 +47,7 @@ add_subdirectory(canvas_root_io)
 #add_subdirectory(ups)
 
 # CMake modules
-#add_subdirectory(Modules)
-install(DIRECTORY Modules/AltCMake/
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}/Modules
-  PATTERN "checkClassVersion"
-  PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ
-                     GROUP_EXECUTE GROUP_READ
-  )
+add_subdirectory(Modules/AltCMake)
 
 # tools - e.g. migration scripts
 #add_subdirectory(tools)

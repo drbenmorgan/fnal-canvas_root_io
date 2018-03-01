@@ -1,10 +1,12 @@
-if(ALT_CMAKE)
-  include(altCMakeLists.cmake)
-  return()
-endif()
-
 art_dictionary(NO_DEFAULT_LIBRARIES DICTIONARY_LIBRARIES cetlib NO_INSTALL)
 
+if(ALT_CMAKE)
+  # simpler to do...
+  add_executable(TypeNameBranchName_t TypeNameBranchName_t.cc)
+  target_link_libraries(TypeNameBranchName_t PRIVATE canvas cetlib)
+  # Add to the env (but better to use this directly in TEST_EXEC
+  cet_test_env("PATH=$<TARGET_FILE_DIR:TypeNameBranchName_t>:$ENV{PATH}")
+else()
 cet_make_exec(TypeNameBranchName_t
   NO_INSTALL
   LIBRARIES
@@ -12,6 +14,7 @@ cet_make_exec(TypeNameBranchName_t
   cetlib
   cetlib_except
 )
+endif()
 
 set(tnum 1)
 foreach(types_file

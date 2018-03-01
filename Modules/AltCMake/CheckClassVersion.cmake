@@ -7,6 +7,7 @@ set(CCV_DEFAULT_RECURSIVE FALSE
   CACHE BOOL "Default setting for recursive checks by checkClassVersion (may be time-consuming)."
   )
 
+# - Should also check that we can do "import ROOT" in case PYTHONPATH isn't set
 execute_process(COMMAND root-config --has-python
   RESULT_VARIABLE CCV_ROOT_CONFIG_OK
   OUTPUT_VARIABLE CCV_ENABLED

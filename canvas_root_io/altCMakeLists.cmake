@@ -37,13 +37,14 @@ target_include_directories(canvas_root_io
   PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+    # This will hard code a path for now...
     ${ROOT_INCLUDE_DIRS}
     )
 target_link_libraries(canvas_root_io
   PUBLIC
     canvas::canvas
     cetlib::cetlib
-    ${ROOT_Core_LIBRARY}
+    ROOT::Core
   PRIVATE
     messagefacility::MF_MessageLogger
     #TBB::TBB
