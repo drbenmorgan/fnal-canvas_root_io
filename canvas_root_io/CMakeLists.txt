@@ -14,6 +14,7 @@ cet_make(LIBRARY_NAME canvas_root_io
   Utilities
   LIBRARIES
   MF_MessageLogger
+  MF_Utilities
   ${ROOT_CORE}
   ${TBB}
   canvas
