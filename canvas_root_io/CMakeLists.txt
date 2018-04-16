@@ -17,6 +17,7 @@ cet_make(LIBRARY_NAME canvas_root_io
   ${ROOT_CORE}
   ${TBB}
   canvas
+  hep_concurrency
   fhiclcpp
   cetlib
   cetlib_except

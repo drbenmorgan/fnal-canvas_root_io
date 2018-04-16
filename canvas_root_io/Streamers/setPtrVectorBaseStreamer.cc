@@ -5,6 +5,12 @@
 #include "TBuffer.h"
 #include "TClass.h"
 
+TClassStreamer*
+art::detail::PtrVectorBaseStreamer::Generate() const
+{
+  return new PtrVectorBaseStreamer{*this};
+}
+
 void
 art::detail::PtrVectorBaseStreamer::operator()(TBuffer& R_b, void* objp)
 {

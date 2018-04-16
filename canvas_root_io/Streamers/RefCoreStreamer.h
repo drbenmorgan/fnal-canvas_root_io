@@ -2,9 +2,9 @@
 #define canvas_root_io_Streamers_RefCoreStreamer_h
 // vim: set sw=2 expandtab :
 
-#include "cetlib/exempt_ptr.h"
-
 #include "TClassStreamer.h"
+
+#include <atomic>
 
 class TBuffer;
 
@@ -13,23 +13,17 @@ namespace art {
   class PrincipalBase;
 
   class RefCoreStreamer : public TClassStreamer {
-
   public:
-    explicit RefCoreStreamer(cet::exempt_ptr<PrincipalBase const> principal =
-                               cet::exempt_ptr<PrincipalBase const>());
-
-    void setPrincipal(cet::exempt_ptr<PrincipalBase const>);
-
+    explicit RefCoreStreamer(PrincipalBase const* principal = nullptr);
+    void setPrincipal(PrincipalBase const*);
     virtual TClassStreamer* Generate() const override;
-
     void operator()(TBuffer&, void*) override;
 
   private:
-    cet::exempt_ptr<PrincipalBase const> principal_;
+    std::atomic<PrincipalBase const*> principal_;
   };
 
-  void configureRefCoreStreamer(cet::exempt_ptr<PrincipalBase const> principal =
-                                  cet::exempt_ptr<PrincipalBase const>());
+  void configureRefCoreStreamer(PrincipalBase const* principal = nullptr);
 
 } // namespace art
 

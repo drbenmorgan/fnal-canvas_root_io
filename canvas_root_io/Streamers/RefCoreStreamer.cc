@@ -9,14 +9,15 @@
 
 namespace art {
 
-  RefCoreStreamer::RefCoreStreamer(
-    cet::exempt_ptr<PrincipalBase const>
-      principal /* = cet::exempt_ptr<PrincipalBase const>() */)
-    : principal_(principal)
-  {}
+  RefCoreStreamer::RefCoreStreamer(PrincipalBase const* principal /*=nullptr*/)
+  {
+    // Must do this way, thread sanitizer does not handle
+    // ctor initializer properly.
+    principal_ = principal;
+  }
 
   void
-  RefCoreStreamer::setPrincipal(cet::exempt_ptr<PrincipalBase const> principal)
+  RefCoreStreamer::setPrincipal(PrincipalBase const* principal)
   {
     principal_ = principal;
   }
@@ -24,7 +25,7 @@ namespace art {
   TClassStreamer*
   RefCoreStreamer::Generate() const
   {
-    return new RefCoreStreamer{*this};
+    return new RefCoreStreamer{principal_.load()};
   }
 
   void
@@ -38,7 +39,7 @@ namespace art {
       if (principal_ && obj->id().isValid()) {
         // In the case of art, get the Group.
         // In the case of gallery, get the BranchData or AssnsBranchData.
-        auto edProductGetter = principal_->getEDProductGetter(obj->id());
+        auto edProductGetter = principal_.load()->getEDProductGetter(obj->id());
         obj->setProductGetter(edProductGetter);
       } else {
         obj->setProductGetter(nullptr);
@@ -50,11 +51,11 @@ namespace art {
   }
 
   void
-  configureRefCoreStreamer(cet::exempt_ptr<PrincipalBase const> principal)
+  configureRefCoreStreamer(PrincipalBase const* principal)
   {
     static TClassRef cl("art::RefCore");
     RefCoreStreamer* st = static_cast<RefCoreStreamer*>(cl->GetStreamer());
-    if (st == 0) {
+    if (st == nullptr) {
       cl->AdoptStreamer(new RefCoreStreamer(principal));
     } else {
       st->setPrincipal(principal);
