@@ -46,8 +46,9 @@ target_link_libraries(canvas_root_io
     cetlib::cetlib
     ROOT::Core
   PRIVATE
+    Threads::Threads
     messagefacility::MF_MessageLogger
-    #TBB::TBB
+    TBB::tbb
   )
 
 #-----------------------------------------------------------------------
