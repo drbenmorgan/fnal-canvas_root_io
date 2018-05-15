@@ -78,7 +78,11 @@ function(check_class_version)
     # Add the check to the end of the dictionary building step.
     add_custom_command(OUTPUT ${dictname}_dict_checked
       # Assumes we're alongside... Might want target...
-      COMMAND ${CMAKE_COMMAND} -E env "PYTHONPATH=${ROOT_LIBRARY_DIR}:${PYTHONPATH}" ${CHECK_CLASS_VERSION_EXE} ${CCV_EXTRA_ARGS}
+      # Note use of MF_PLUGIN_PATH. Needed with Messagefacility  >= 2.2.0 as this now
+      # has globals for pluginfactories. These throw on construction unless dynamic
+      # loader path is present. Use override variable here as it's highly unlikely
+      # that we'll need the plugins for dictionary generation.
+      COMMAND ${CMAKE_COMMAND} -E env "PYTHONPATH=${ROOT_LIBRARY_DIR}:${PYTHONPATH}" "MF_PLUGIN_PATH=${MF_PLUGIN_PATH}" ${CHECK_CLASS_VERSION_EXE} ${CCV_EXTRA_ARGS}
       # Might be $<TARGET_FILE:${dictname}_dict>?
       -l $<TARGET_PROPERTY:${dictname}_dict,LIBRARY_OUTPUT_DIRECTORY>/${CMAKE_SHARED_LIBRARY_PREFIX}${dictname}_dict
       -x ${CMAKE_CURRENT_SOURCE_DIR}/classes_def.xml
