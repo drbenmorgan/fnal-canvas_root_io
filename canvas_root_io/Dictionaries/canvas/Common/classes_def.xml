@@ -38,9 +38,7 @@
  <class name="std::vector<art::Ptr<int> >"/>
  <class name="art::PtrVector<int>"/>
  <class name="art::Wrapper<art::PtrVector<int> >"/>
- <class name="art::HLTPathStatus" ClassVersion="12">
-  <version ClassVersion="12" checksum="1387315422"/>
-  <version ClassVersion="11" checksum="2430529585"/>
+ <class name="art::HLTPathStatus" ClassVersion="10">
   <version ClassVersion="10" checksum="1387315422"/>
  </class>
  <class name="art::Wrapper<art::HLTPathStatus>" splitLevel="0"/>
