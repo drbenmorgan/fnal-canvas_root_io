@@ -1,7 +1,7 @@
 # - Canvas top level build
 # Project setup
 cmake_minimum_required(VERSION 3.3.0)
-project(canvas_root_io VERSION 1.1.4)
+project(canvas_root_io VERSION 1.1.6)
 
 # - Cetbuildtools, version2
 find_package(cetbuildtools2 0.4.0 REQUIRED)
