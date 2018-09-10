@@ -9,7 +9,7 @@ perllib  product_dir
 product		version
 canvas		v3_04_00
 root		v6_14_04
-cetbuildtools	v7_06_02	-	only_for_build
+cetbuildtools	v7_06_03	-	only_for_build
 end_product_list
 
 qualifier	canvas          root		notes
