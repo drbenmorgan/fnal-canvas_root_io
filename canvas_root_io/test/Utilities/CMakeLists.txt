@@ -63,3 +63,8 @@ cet_test(TypeWithDict_t USE_BOOST_UNIT
   canvas_root_io
   ${ROOT_CORE}
   )
+
+cet_test(TWD_minimal_t USE_BOOST_UNIT
+  LIBRARIES
+  ${ROOT_CORE}
+  )
