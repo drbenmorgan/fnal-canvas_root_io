@@ -64,7 +64,7 @@ cet_test(TypeWithDict_t USE_BOOST_UNIT
   ${ROOT_CORE}
   )
 
-cet_test(TWD_minimal_t USE_BOOST_UNIT
+cet_test(TWD_minimal_t
   LIBRARIES
   ${ROOT_CORE}
   )
