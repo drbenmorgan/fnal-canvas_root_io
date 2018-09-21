@@ -8,8 +8,8 @@ perllib  product_dir
 #
 product		version
 canvas		v3_04_00
-root		v6_14_04
-cetbuildtools	v7_06_03	-	only_for_build
+root		v6_14_04a
+cetbuildtools	v7_06_04	-	only_for_build
 end_product_list
 
 qualifier	canvas          root		notes
@@ -19,8 +19,8 @@ e19:debug	e19:debug	e19:debug
 e19:prof	e19:prof	e19:prof
 c2:debug	c2:debug	c2:debug
 c2:prof		c2:prof		c2:prof
-c5:debug	c5:debug	c5:debug
-c5:prof		c5:prof		c5:prof
+c7:debug	c7:debug	c7:debug
+c7:prof		c7:prof		c7:prof
 end_qualifier_list
 
 # Local Variables:
