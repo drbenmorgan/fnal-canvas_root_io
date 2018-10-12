@@ -42,7 +42,8 @@
     <version ClassVersion="10" checksum="877610178"/>
   </class>
   <class name="std::vector<art::ProcessHistory>"/>
-  <class name="art::ProcessHistory" ClassVersion="10">
+  <class name="art::ProcessHistory" ClassVersion="11">
+   <version ClassVersion="11" checksum="4134845517"/>
     <field name="mutex_" transient="true"/>
     <version ClassVersion="10" checksum="2473205264"/>
   </class>
