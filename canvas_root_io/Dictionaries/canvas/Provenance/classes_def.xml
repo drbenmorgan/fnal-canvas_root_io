@@ -2,7 +2,8 @@
   <class pattern="art::Transient<*>">
     <field name="value_" transient="true"/>
   </class>
-  <class name="art::History" ClassVersion="10">
+  <class name="art::History" ClassVersion="11">
+    <version ClassVersion="11" checksum="3533235054"/>
     <version ClassVersion="10" checksum="1835436919"/>
   </class>
   <class name="art::EventSelectionIDVector"/>
