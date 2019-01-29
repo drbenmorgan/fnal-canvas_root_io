@@ -14,4 +14,5 @@
 #include "canvas/Persistency/Provenance/ProductRegistry.h"
 #include "canvas/Persistency/Provenance/ResultsAuxiliary.h"
 #include "canvas/Persistency/Provenance/RunAuxiliary.h"
+#include "canvas/Persistency/Provenance/SampledInfo.h"
 #include "canvas/Persistency/Provenance/SubRunAuxiliary.h"
