@@ -1,13 +1,13 @@
+#include "canvas_root_io/Utilities/getWrapperTIDs.h"
 #include "canvas_root_io/Utilities/TypeTools.h"
 #include "canvas_root_io/Utilities/TypeWithDict.h"
-#include "canvas_root_io/Utilities/getWrapperTIDs.h"
-
 
 using namespace std;
 
 namespace {
-  void maybeThrowLateDictionaryError(art::root::TypeWithDict const & twd,
-                                     std::string const & tname)
+  void
+  maybeThrowLateDictionaryError(art::root::TypeWithDict const& twd,
+                                std::string const& tname)
   {
     if (!twd) {
       art::root::throwLateDictionaryError(tname);
@@ -16,8 +16,7 @@ namespace {
 }
 
 std::vector<art::TypeID>
-art::root::
-getWrapperTIDs(std::string const & productClassName)
+art::root::getWrapperTIDs(std::string const& productClassName)
 {
   std::vector<TypeID> result;
   TypeWithDict const ta(productClassName);

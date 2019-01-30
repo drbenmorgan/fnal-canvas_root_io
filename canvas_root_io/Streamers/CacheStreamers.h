@@ -2,58 +2,39 @@
 #define canvas_root_io_Streamers_CacheStreamers_h
 // vim: set sw=2 expandtab :
 
-#include "TClassStreamer.h"
 #include "TClassRef.h"
+#include "TClassStreamer.h"
 class TBuffer;
 
 namespace art {
 
-class ConstPtrCacheStreamer : public TClassStreamer {
+  class ConstPtrCacheStreamer : public TClassStreamer {
 
-public:
+  public:
+    explicit ConstPtrCacheStreamer() : cl_("art::ConstPtrCache") {}
 
-  explicit
-  ConstPtrCacheStreamer()
-    : cl_("art::ConstPtrCache")
-  {
-  }
+    virtual TClassStreamer* Generate() const override;
 
-  virtual
-  TClassStreamer*
-  Generate() const override;
+    void operator()(TBuffer& R_b, void* objp) override;
 
-  void
-  operator()(TBuffer& R_b, void* objp) override;
+  private:
+    TClassRef cl_;
+  };
 
-private:
+  class BoolCacheStreamer : public TClassStreamer {
 
-  TClassRef cl_;
+  public:
+    explicit BoolCacheStreamer() : cl_("art::BoolCache") {}
 
-};
+    virtual TClassStreamer* Generate() const override;
 
-class BoolCacheStreamer : public TClassStreamer {
+    void operator()(TBuffer& R_b, void* objp) override;
 
-public:
+  private:
+    TClassRef cl_;
+  };
 
-  explicit
-  BoolCacheStreamer()
-    : cl_("art::BoolCache")
-  {
-  }
-
-  virtual
-  TClassStreamer*
-  Generate() const override;
-
-  void operator()(TBuffer& R_b, void* objp) override;
-
-private:
-
-  TClassRef cl_;
-
-};
-
-void setCacheStreamers();
+  void setCacheStreamers();
 
 } // namespace art
 

@@ -2,7 +2,8 @@
   <class pattern="art::Transient<*>">
     <field name="value_" transient="true"/>
   </class>
-  <class name="art::History" ClassVersion="10">
+  <class name="art::History" ClassVersion="11">
+    <version ClassVersion="11" checksum="3533235054"/>
     <version ClassVersion="10" checksum="1835436919"/>
   </class>
   <class name="art::EventSelectionIDVector"/>
@@ -197,4 +198,13 @@
   <class name="art::ProductID" ClassVersion="10">
     <version ClassVersion="10" checksum="2026026665"/>
   </class>
+  <class name="art::SampledEventInfo" ClassVersion="10">
+   <version ClassVersion="10" checksum="3723908890"/>
+  </class>
+  <class name="std::vector<art::SubRunID>"/>
+  <class name="std::vector<art::RunID>"/>
+  <class name="art::SampledInfo<art::SubRunID>"/>
+  <class name="art::SampledInfo<art::RunID>"/>
+  <class name="std::map<std::string, art::SampledInfo<art::SubRunID>>"/>
+  <class name="std::map<std::string, art::SampledInfo<art::RunID>>"/>
 </lcgdict>
