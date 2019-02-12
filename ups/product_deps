@@ -1,6 +1,6 @@
 # The parent line must be the first non-comment line in the file
 # This line defines the product name and version
-parent canvas_root_io	v1_02_01
+parent canvas_root_io	v1_02_02
 defaultqual	e17
 #
 fcldir -
