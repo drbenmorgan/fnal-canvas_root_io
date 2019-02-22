@@ -27,6 +27,12 @@ namespace art {
 
       static void init_streamer(std::string className);
 
+      TClassStreamer*
+      Generate() const override
+      {
+        return new AssnsStreamer{*this};
+      }
+
       void
       operator()(TBuffer& R_b, void* objp)
       {
