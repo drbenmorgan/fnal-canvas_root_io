@@ -172,6 +172,10 @@ art::root::DictionaryChecker::checkDictionaries(string const& name_orig,
       cl->SetCanSplit(0);
     }
   }
+  // ROOT does not require checking base classes for std::bitset
+  if (match_from_begin(name, "bitset")) {
+    return;
+  }
   if (!recursive) {
     return;
   }
