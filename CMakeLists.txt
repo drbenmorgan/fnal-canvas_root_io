@@ -16,7 +16,7 @@
 # use cmake 3.11 or later
 cmake_minimum_required (VERSION 3.11)
 
-project(canvas)
+project(canvas_root_io)
 
 # cetbuildtools contains our cmake modules
 find_package(cetbuildtools REQUIRED)
