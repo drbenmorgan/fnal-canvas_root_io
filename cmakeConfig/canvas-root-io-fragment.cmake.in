@@ -1,0 +1,2 @@
+find_package(hep_concurrency REQUIRED)
+find_package(canvas REQUIRED)
