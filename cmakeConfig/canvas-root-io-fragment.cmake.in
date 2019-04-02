@@ -1,2 +1,4 @@
 find_package(hep_concurrency REQUIRED)
 find_package(canvas REQUIRED)
+find_package(CLHEP REQUIRED COMPONENTS Matrix Vector)
+find_package(ROOT REQUIRED COMPONENTS)
